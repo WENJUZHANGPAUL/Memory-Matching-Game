@@ -1,35 +1,29 @@
+
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <!-- 設定文件的內容類型和字符編碼 -->
-
-    <title>翻牌遊戲</title> 
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <title>記憶配對遊戲</title>
     <style>
         * {
             font-family: Arial; 
         }
-
         header, footer {
-            background-color: #66666
+            background-color: #666666;
             color: #FFFFFF;
-            text-align: center;
+            text-align: center; 
             padding: 10px; 
         }
-
         main {
             padding: 10px 0; 
         }
-
         .grid-container {
             display: grid; 
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 15px; 
-            width: 360px; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-gap: 10px; 
+            width: 400px; 
             margin: auto; 
         }
-
         .grid-item {
             display: grid; 
             width: 80px; 
@@ -37,51 +31,79 @@
             justify-content: center; 
             align-items: center; 
             background-color: #F0F0F0; 
-            cursor: pointer; 
+            cursor: pointer;
+            font-size: 60px;
+            text-indent:1000px; 
+            overflow: hidden;
         }
-
-        
+        .yellow {
+           text-indent:0px; 
+        }
+        .
         }
     </style>
 </head>
-
 <body>
-
 <header>
-    <h1>翻牌遊戲</h1> 
+    <h1>記憶配對遊戲</h1> <!-- 頁面標題 -->
 </header>
 
 <main>
-    <div class="grid-container">
-        
-        <div id="grid1" class="grid-item"></div>
-        <div id="grid2" class="grid-item"></div>
-        <div id="grid3" class="grid-item"></div>
-        <div id="grid4" class="grid-item"></div>
-        <div id="grid5" class="grid-item"></div>
-        <div id="grid6" class="grid-item"></div>
-        <div id="grid7" class="grid-item"></div>
-        <div id="grid8" class="grid-item"></div>
-        <div id="grid9" class="grid-item"></div>
-        <div id="grid10" class="grid-item"></div>
-        <div id="grid11" class="grid-item"></div>
-        <div id="grid12" class="grid-item"></div>
-        <div id="grid13" class="grid-item"></div>
-        <div id="grid14" class="grid-item"></div>
-        <div id="grid15" class="grid-item"></div>
-        <div id="grid16" class="grid-item"></div>
-    </div>
-     <button type="button" onclick="alert('Hello world!')">restart</button>
- 
+  <div class="grid-container" id="grid-container">
+    
+  </div>
 </main>
 
 <footer>
-    <b>翻牌遊戲</b>
+    <b>單元五練習三 (2024.01.26)</b> 
 </footer>
-
 <script>
+    const emojis=['😀','😳','😭','☺️','😆','🙃','😋','😗'];
+    const cards =[...emojis,...emojis];
+    function toggleGridSelection(event) {
+        
+        var grid = event.target; 
     
-</script>
+        var clickCount = grid.getAttribute('data-click-count') || 0;
+        
+        clickCount = parseInt(clickCount, 10); 
+  
+        grid.classList.remove('yellow');
+        grid.classList.remove('green');
+        
+        switch (clickCount) {
+            case 0:
+              
+                grid.classList.add('yellow');
+                break;
+                
+                
+                case 1:  clickCount = -1;
+                 break;
+        }
+        
+        clickCount += 1;
+        
+      
+        grid.setAttribute('data-click-count', clickCount.toString());
+    }
+   const gridSize = 4; //prompt('請輸入網格尺寸（例如：3表示3x3網格): ');
+   const gridcontainer = document.getElementById('grid-container');
+   gridcontainer.style.gridTemplateColumns =`repeat(${gridSize},1fr)`;
+   gridcontainer.style.width = `${gridSize*80 + (gridSize-1)*10}px`;
+   
+   for(let i =1; i <=gridSize * gridSize; i++){
+   const griditem = document.createElement('div');
+   griditem.className = 'grid-item';
+   griditem.textContent = cards[i-1];
+   gridcontainer.appendChild(griditem);
+   }
 
+     document.querySelectorAll('.grid-item').forEach(function (grid) {
+        grid.addEventListener('click', toggleGridSelection);
+    });
+</script>
 </body>
 </html>
+      
+
