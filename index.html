@@ -60,6 +60,7 @@
 <script>
     const emojis=['😀','😳','😭','☺️','😆','🙃','😋','😗'];
     const cards =[...emojis,...emojis];
+    cards.sort(() => 0.5 - Math.random());
     function toggleGridSelection(event) {
         
         var grid = event.target; 
