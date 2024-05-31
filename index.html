@@ -48,13 +48,16 @@
 </header>
 
 <main>
+  
   <div class="grid-container" id="grid-container">
-    
+   </div>
+   <div id="message"style="text-align: center;margin-top:20px;"></dic>
+   <div style="taxt-align:center;margin-top:10px;">
+      <button id="reset-button">重新开始</button>
   </div>
 </main>
 
 <footer>
-  
     <b>單元五練習三 (2024.05.11)</b> 
 </footer>
 <script>
@@ -114,7 +117,7 @@
         grid.addEventListener('click', toggleGridSelection);
     });
     
-  
+    document.getElementById('reset-button').addEventListener('click',function () {location.reload()});
 </script>
 </body>
 </html>
